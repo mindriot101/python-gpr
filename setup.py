@@ -1,7 +1,11 @@
 from setuptools import setup, Extension
 from setuptools.command.build_ext import build_ext
 import sys
+import os
 import setuptools
+from codecs import open
+
+ROOT_DIR = os.path.realpath(os.path.dirname(__file__))
 
 class GetPybindInclude(object):
     """Helper class to determine the pybind11 include path
@@ -85,8 +89,29 @@ class BuildExt(build_ext):
             ext.extra_compile_args = opts
         build_ext.build_extensions(self)
 
+with open(os.path.join(ROOT_DIR, 'README.md'), encoding='utf-8') as infile:
+    long_description = infile.read()
+
 setup(
     name='gpr',
+    version='0.0.1',
+    description='Parse GCODE',
+    long_description=long_description,
+    url='https://github.com/mindriot101/python-gpr',
+    author='Simon Walker',
+    author_email='s.r.walker101@googlemail.com',
+    license='MIT',
+    classifiers=[
+        'Development Status :: 3 - Alpha',
+        'Intended Audience :: Developers',
+        'License :: OSI Approved :: MIT License',
+        'Programming Language :: Python :: 2',
+        'Programming Language :: Python :: 2.7',
+        'Programming Language :: Python :: 3',
+        'Programming Language :: Python :: 3.4',
+        'Programming Language :: Python :: 3.5',
+        'Programming Language :: Python :: 3.6',
+    ],
     ext_modules=ext_modules,
     zip_safe=False,
     install_requires=['pybind11', ],
