@@ -1,13 +1,24 @@
 #include <pybind11/pybind11.h>
 #include <iostream>
+#include <string>
+#include <fstream>
+#include <streambuf>
 #include "parser.h"
 
 namespace py = pybind11;
+
+gpr::gcode_program parse_from_file(std::string &filename) {
+    std::ifstream infile(filename);
+    std::string file_contents((std::istreambuf_iterator<char>(infile)),
+            std::istreambuf_iterator<char>());
+    return gpr::parse_gcode(file_contents);
+}
 
 PYBIND11_MODULE(gpr, m) {
     m.doc() = "GCODE parsing library";
 
     m.def("parse_gcode", &gpr::parse_gcode, "A function to parse gcode");
+    m.def("parse_gcode_from_file", &parse_from_file, "Read gcode from file specified");
 
     py::enum_<gpr::address_type>(m, "AddressType")
         .value("Integer", gpr::address_type::ADDRESS_TYPE_INTEGER)
