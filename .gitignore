@@ -6,3 +6,5 @@ var
 .cache
 *.pyc
 dist
+wheelhouse
+*.whl
