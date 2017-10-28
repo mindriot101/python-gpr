@@ -1,3 +1,9 @@
 recursive-include vendor/gpr *
 recursive-include src *
 include README.md
+include LICENSE
+include setup.py
+recursive-include testing *.py
+exclude gpr.egg-info
+exclude .git
+include .gitmodules

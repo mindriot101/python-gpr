@@ -5,3 +5,4 @@ var
 .tox
 .cache
 *.pyc
+dist
