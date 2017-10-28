@@ -4,3 +4,4 @@ build
 var
 .tox
 .cache
+*.pyc
