@@ -1,0 +1,3 @@
+[submodule "vendor/gpr"]
+	path = vendor/gpr
+	url = https://github.com/dillonhuff/gpr
