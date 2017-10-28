@@ -6,9 +6,10 @@ import setuptools
 ext_modules = [
     Extension(
         'gpr',
-        ['main.cpp', ],
+        ['src/gpr.cpp', 'vendor/gpr/src/parser.cpp', 'vendor/gpr/src/gcode_program.cpp'],
         include_dirs=[
             '/usr/local/include',
+            'vendor/gpr/src',
         ],
         language='c++'
     ),
